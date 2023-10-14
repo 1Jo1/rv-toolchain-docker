@@ -37,5 +37,12 @@ RUN cd /riscv/ && ./configure --prefix=/opt/riscv --enable-multilib
 RUN cd /riscv/ && make linux -j4
 RUN rm -rf /riscv
 
+RUN wget wget https://download.qemu.org/qemu-8.1.1.tar.xz
+RUN tar xvJf qemu-8.1.1.tar.xz
+RUN cd qemu-8.1.1
+RUN ./configure --target-list=riscv64-softmmu
+RUN make -j $(nproc)
+RUN make install
+
 USER riscv
 WORKDIR /home/riscv
