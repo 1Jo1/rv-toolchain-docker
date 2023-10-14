@@ -38,7 +38,7 @@ RUN cd /riscv/ && make linux -j4
 RUN rm -rf /riscv
 
 RUN apt-get install -y wget tar
-RUN wget wget https://download.qemu.org/qemu-8.1.1.tar.xz
+RUN wget https://download.qemu.org/qemu-8.1.1.tar.xz
 RUN tar xvJf qemu-8.1.1.tar.xz
 RUN cd qemu-8.1.1
 RUN ./configure --target-list=riscv64-softmmu
