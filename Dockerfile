@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 ARG UID=1000
 
@@ -30,17 +30,16 @@ RUN apt-get install -y \
     bc  \
     zlib1g-dev  \
     libexpat-dev \
-    python3 \
-    python2.7
+    python3
 
 RUN cd /riscv/ && ./configure --prefix=/opt/riscv --enable-multilib
 RUN cd /riscv/ && make linux -j4
 RUN rm -rf /riscv
 
 RUN apt-get install -y wget tar software-properties-common
-RUN add-apt-repository -y ppa:deadsnakes/ppa
-RUN apt-get update
-RUN apt install python3.9
+# RUN add-apt-repository -y ppa:deadsnakes/ppa
+# RUN apt-get update
+# RUN apt install python3.9
 RUN wget https://download.qemu.org/qemu-8.1.1.tar.xz
 RUN tar xvJf qemu-8.1.1.tar.xz
 RUN cd qemu-8.1.1 && ./configure --target-list=riscv64-softmmu && make -j $(nproc) && make install
