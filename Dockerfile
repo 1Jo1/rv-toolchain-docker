@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:18.04
 
 ARG UID=1000
 
@@ -9,7 +9,7 @@ ENV PATH /opt/riscv/bin:${PATH}
 RUN apt-get update
 RUN apt-get install -y git
 
-RUN git clone https://github.com/riscv/riscv-gnu-toolchain --recursive --depth 1 /riscv/
+RUN git clone https://github.com/riscv/riscv-gnu-toolchain --recursive /riscv/
 
 RUN apt-get install -y \
     autoconf \
