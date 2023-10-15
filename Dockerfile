@@ -37,6 +37,7 @@ RUN cd /riscv/ && make linux -j4
 RUN rm -rf /riscv
 
 RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y wget tar software-properties-common python3.9 python3-venv
+RUN pip3 install sphinx
 # RUN add-apt-repository -y ppa:deadsnakes/ppa
 # RUN apt-get update
 # RUN apt install python3.9
