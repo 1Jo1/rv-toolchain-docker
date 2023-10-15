@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 ARG UID=1000
 
@@ -36,7 +36,7 @@ RUN cd /riscv/ && ./configure --prefix=/opt/riscv --enable-multilib
 RUN cd /riscv/ && make linux -j4
 RUN rm -rf /riscv
 
-RUN apt-get install -y wget tar software-properties-common pyhton39
+RUN apt-get install -y wget tar software-properties-common python3.9
 # RUN add-apt-repository -y ppa:deadsnakes/ppa
 # RUN apt-get update
 # RUN apt install python3.9
