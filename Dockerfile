@@ -7,11 +7,11 @@ RUN addgroup riscv && useradd -m -g riscv -u ${UID} riscv
 ENV PATH /opt/riscv/bin:${PATH}
 
 RUN apt-get update
-RUN apt-get install -y git
+RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y git
 
 RUN git clone https://github.com/riscv/riscv-gnu-toolchain --recursive /riscv/
 
-RUN apt-get install -y \
+RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y \
     autoconf \
     automake \
     autotools-dev \
@@ -36,7 +36,7 @@ RUN cd /riscv/ && ./configure --prefix=/opt/riscv --enable-multilib
 RUN cd /riscv/ && make linux -j4
 RUN rm -rf /riscv
 
-RUN apt-get install -y wget tar software-properties-common python3.9
+RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y wget tar software-properties-common python3.9
 # RUN add-apt-repository -y ppa:deadsnakes/ppa
 # RUN apt-get update
 # RUN apt install python3.9
