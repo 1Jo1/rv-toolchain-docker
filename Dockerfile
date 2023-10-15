@@ -36,7 +36,7 @@ RUN cd /riscv/ && ./configure --prefix=/opt/riscv --enable-multilib
 RUN cd /riscv/ && make linux -j4
 RUN rm -rf /riscv
 
-RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y wget tar software-properties-common python3.9 python3-venv python3-pip ninja-build
+RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y wget tar software-properties-common python3.9 python3-venv python3-pip ninja-build pkg-config
 RUN pip3 install sphinx sphinx-rtd-theme
 # RUN add-apt-repository -y ppa:deadsnakes/ppa
 # RUN apt-get update
