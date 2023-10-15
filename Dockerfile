@@ -30,17 +30,24 @@ RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y \
     bc  \
     zlib1g-dev  \
     libexpat-dev \
-    python3
+    python3 \
+    wget \
+    tar \
+    software-properties-common \
+    python3.9 \
+    python3-venv \
+    python3-pip \
+    ninja-build \
+    pkg-config \
+    glib2.0 \
+    libpixman-1-dev
+
 
 RUN cd /riscv/ && ./configure --prefix=/opt/riscv --enable-multilib
 RUN cd /riscv/ && make linux -j4
 RUN rm -rf /riscv
 
-RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y wget tar software-properties-common python3.9 python3-venv python3-pip ninja-build pkg-config glib2.0 libpixman-1-dev
 RUN pip3 install sphinx sphinx-rtd-theme
-# RUN add-apt-repository -y ppa:deadsnakes/ppa
-# RUN apt-get update
-# RUN apt install python3.9
 RUN wget https://download.qemu.org/qemu-8.1.1.tar.xz
 RUN tar xvJf qemu-8.1.1.tar.xz
 RUN cd qemu-8.1.1 && ./configure --target-list=riscv64-softmmu && make -j $(nproc) && make install
