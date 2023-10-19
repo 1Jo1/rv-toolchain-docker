@@ -51,6 +51,7 @@ RUN pip3 install sphinx sphinx-rtd-theme
 RUN wget https://download.qemu.org/qemu-8.1.1.tar.xz
 RUN tar xvJf qemu-8.1.1.tar.xz
 RUN cd qemu-8.1.1 && ./configure --target-list=riscv64-softmmu && make -j $(nproc) && make install
+RUN rm -rf qemu-8.1.1
 
 USER riscv
 WORKDIR /home/riscv
